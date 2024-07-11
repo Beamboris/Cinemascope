@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '/src/components/cinemascope-high-resolution-logo-transparent (1).png'
+import logo from '/src/assets/cinemascope-high-resolution-logo-transparent (1).png'
 
 const Footer = () => {
   return (

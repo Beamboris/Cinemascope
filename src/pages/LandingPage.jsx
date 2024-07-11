@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../components/Main';
+import Hero from '../components/Hero';
 import FilmBanner from '../components/FilmBanner';
 import SubscriptionPlan from '../components/SubscriptionPlan';
 import Adjustable from '../components/Adjustable';
@@ -9,7 +9,7 @@ import Accordion from '../components/Accordion';
 const LandingPage = () => {
   return (
     <div>
-      <Main />
+      <Hero />
       <FilmBanner />
       <SubscriptionPlan />
       <Adjustable />

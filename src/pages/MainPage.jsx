@@ -1,9 +1,11 @@
 import React from 'react'
+import MovieFeed from '../components/MovieFeed'
 
 const MainPage = () => {
   return (
     <div>
-      Hello World
+      
+        <MovieFeed />
     </div>
   )
 }
