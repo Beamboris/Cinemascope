@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import requests from '../requests';
+import requests from '../requests.js';
 import MovieRow from '../components/MoviesRow.jsx'
-import MovieExplanation from './MovieExplanation.jsx';
+import MovieExplanation from '../components/MovieExplanation.jsx';
 
-const MovieFeed = () => {
+const MovieFeed = ( {handleSelectedMovie} ) => {
 
 
     const [selectedMovie, setSelectedMovie] = useState(null);
@@ -15,11 +15,12 @@ const MovieFeed = () => {
           behavior: 'smooth'
         });
     };
-    console.log(selectedMovie)
+  
+    
     
   return (  
     <div>
-      {selectedMovie && <MovieExplanation movie={selectedMovie}/>}
+      {selectedMovie && <MovieExplanation movie={selectedMovie} handleSelectedMovie={handleSelectedMovie}/>}
       <div className="pt-20">
       <MovieRow URL={requests.popular} onSelectMovie={handleSelectMovie} typeOfMovies="Popular"/>
       <MovieRow URL={requests.nowPlaying} onSelectMovie={handleSelectMovie} typeOfMovies="Now Playing"/>
