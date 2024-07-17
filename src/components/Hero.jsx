@@ -9,22 +9,14 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const Main = () => {
     const [movies, setMovies ] = useState([]) 
-    const [video, setVideo ] = useState([])
     const movie = movies[Math.floor(Math.random() * movies.length)]
 
     useEffect(() => {
         axios.get(requests.popular).then((response) => {
             setMovies(response.data.results)
         })
-        axios.get(`https://api.themoviedb.org/3/movie/150540/videos?language=en-US&api_key=20ee7ddc92e5923dbe9489331f6b1625`).then((response) => {
-          setVideo(response.data.results)
-        })
-        
-        
     },[])
 
-    console.log(movie?.id)
-    console.log(video)
 
 
     

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import LandingPage from "./pages/LandingPage"
 import Footer from "./components/Footer"
@@ -8,7 +8,7 @@ import MovieFeed from "./pages/MovieFeed"
 
 function App() {
   
-  const [ selectedMovie, setSelectedMovie ] = useState(null)
+  const navigate = useNavigate()
   const [isSignedIn, setIsSignedIn] = useState(localStorage.getItem('isSignedIn') === 'true');
 
   const handleSignIn = () => {
@@ -20,25 +20,18 @@ function App() {
     localStorage.setItem('isSignedIn', 'false');
     setIsSignedIn(false)
   }
+  navigate("/")
   };
 
-  const handleSelectedMovie = (movie) => {
-    setSelectedMovie(movie)
-  }
-
-console.log(selectedMovie)
   return (
-
-
     <>
   <Navbar signIn={handleSignIn} isSignedIn={isSignedIn}/>
     <Routes >
-      <Route path='/' element={isSignedIn  ? <MovieFeed handleSelectedMovie={handleSelectedMovie}/> : <LandingPage />}/>
-      <Route path='/id' element={<EachMovieView />}/>
+      <Route path='/' element={isSignedIn  ? <MovieFeed /> : <LandingPage />}/>
+      <Route path='/:id' element={<EachMovieView />} />
     </Routes>
     <Footer />
     </>
   )
 }
-
-export default App
+export default App;

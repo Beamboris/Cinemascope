@@ -3,7 +3,7 @@ import requests from '../requests.js';
 import MovieRow from '../components/MoviesRow.jsx'
 import MovieExplanation from '../components/MovieExplanation.jsx';
 
-const MovieFeed = ( {handleSelectedMovie} ) => {
+const MovieFeed = () => {
 
 
     const [selectedMovie, setSelectedMovie] = useState(null);
@@ -20,11 +20,11 @@ const MovieFeed = ( {handleSelectedMovie} ) => {
     
   return (  
     <div>
-      {selectedMovie && <MovieExplanation movie={selectedMovie} handleSelectedMovie={handleSelectedMovie}/>}
+      {selectedMovie && <MovieExplanation movie={selectedMovie} />}
       <div className="pt-20">
       <MovieRow URL={requests.popular} onSelectMovie={handleSelectMovie} typeOfMovies="Popular"/>
-      <MovieRow URL={requests.nowPlaying} onSelectMovie={handleSelectMovie} typeOfMovies="Now Playing"/>
       <MovieRow URL={requests.topRated} onSelectMovie={handleSelectMovie} typeOfMovies="Top Rated"/>
+      <MovieRow URL={requests.nowPlaying} onSelectMovie={handleSelectMovie} typeOfMovies="Now Playing"/>
       </div>
     </div>
   )
