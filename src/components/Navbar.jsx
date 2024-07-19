@@ -31,7 +31,7 @@ const Navbar = ({ signIn, isSignedIn }) => {
         >
           {isSignedIn ? "Sign Out" : "Sign In"}
         </button>
-        <button onClick={toggleNav} className="text-3xl absolute top-[2rem] right-[1rem] md:hidden md:opacity-0">
+        <button onClick={toggleNav} className={`text-3xl absolute top-[2rem] right-[1rem] md:hidden md:opacity-0 }`}>
           <IoIosClose color="white" />
         </button>
       </nav>

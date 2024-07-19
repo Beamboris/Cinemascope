@@ -5,6 +5,7 @@ const requests = {
     nowPlaying: `https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=2`,
     topRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=4`,
     horror: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=27&language=en-US&page=5`,
+    action: `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=26&language=en-US&page=1`,
     
     }
 
