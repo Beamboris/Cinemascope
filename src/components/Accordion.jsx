@@ -16,9 +16,9 @@ const Accordion = () => {
     <div className="w-10/12 mx-auto my-32">
       <div>
         {accordionData.map((item, i) => (
-          <div className="my-2" key={i}>
+          <div className="my-2 bg-[#3b444b] py-6  " key={i}>
             <div
-              className="text-white text-xl flex justify-between items-center cursor-pointer bg-[#3b444b] px-6 py-6"
+              className="text-white text-xl flex justify-between items-center cursor-pointer bg-[#3b444b] px-6 "
               onClick={() => toggle(i)}
             >
               <p> {item.question} </p>

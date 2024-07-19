@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GoHeartFill } from "react-icons/go";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
+const Recommended = ({ URL, typeOfMovies, rowID }) => {
+    const navigate = useNavigate()
   const [favorites, setFavorites] = useState({});
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -11,6 +13,12 @@ const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
       setMovies(response.data.results);
     });
   }, []);
+
+  const scrollToTop = (id) => {
+    window.scrollTo({ top: 0});
+    navigate(`/${id}`)
+
+};
 
   const toggleFavorite = (movieId) => {
     setFavorites((prevFavorites) => ({
@@ -54,7 +62,7 @@ const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
           {movies.map((item, i) => (
             <div
               key={i}
-              onClick={() => onSelectMovie(item)}
+              onClick={() => scrollToTop(item.id)}
               className="w-[150px] h-[200px] inline-block relative cursor-pointer ml-2 md:w-[200px] md:h-[250px]"
             >
               <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:bg-black/80 hover:opacity-100 flex justify-center items-center text-center">
@@ -98,4 +106,4 @@ const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
   );
 };
 
-export default MovieFeed;
+export default Recommended;

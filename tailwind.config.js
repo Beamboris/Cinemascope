@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       transitionProperty: {
-      'max-height': 'max-height'
+      'max-height': 'max-height',
+        'width': 'width'
     }},
   },
   plugins: [],

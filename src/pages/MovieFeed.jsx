@@ -22,9 +22,11 @@ const MovieFeed = () => {
     <div>
       {selectedMovie && <MovieExplanation movie={selectedMovie} />}
       <div className="pt-20">
-      <MovieRow URL={requests.popular} onSelectMovie={handleSelectMovie} typeOfMovies="Popular"/>
-      <MovieRow URL={requests.topRated} onSelectMovie={handleSelectMovie} typeOfMovies="Top Rated"/>
-      <MovieRow URL={requests.nowPlaying} onSelectMovie={handleSelectMovie} typeOfMovies="Now Playing"/>
+      <MovieRow rowID={1} URL={requests.popular} onSelectMovie={handleSelectMovie} typeOfMovies="Popular"  />
+      <MovieRow rowID={2} URL={requests.topRated} onSelectMovie={handleSelectMovie} typeOfMovies="Top Rated" />
+      <MovieRow rowID={3} URL={requests.nowPlaying} onSelectMovie={handleSelectMovie} typeOfMovies="Now Playing" />
+      <MovieRow rowID={4} URL={requests.horror} onSelectMovie={handleSelectMovie} typeOfMovies="Horror Movies" />
+      <MovieRow rowID={5} URL={requests.action} onSelectMovie={handleSelectMovie} typeOfMovies="Action Movies" />
       </div>
     </div>
   )
