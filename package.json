@@ -1,6 +1,6 @@
 {
   "homepage": "https://beamboris.github.io/Cinemascope",
-  "name": "movie-app",
+  "name": "cinemascope",
   "private": true,
   "version": "0.0.0",
   "type": "module",
