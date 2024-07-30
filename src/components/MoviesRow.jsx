@@ -2,23 +2,44 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { GoHeartFill } from "react-icons/go";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
+import PlaceholderCard from "/src/components/PlaceholderCard.jsx";
+import { useNavigate } from "react-router-dom";
 
-const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
+const MoviesRow = ({
+  URL,
+  typeOfMovies,
+  onSelectMovie,
+  rowID,
+  recommended = false,
+}) => {
   const [favorites, setFavorites] = useState({});
   const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    axios.get(URL).then((response) => {
-      setMovies(response.data.results);
-    });
-  }, []);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const placeholders = new Array(10).fill(0);
 
-  const toggleFavorite = (movieId) => {
-    setFavorites((prevFavorites) => ({
-      ...prevFavorites,
-      [movieId]: !prevFavorites[movieId],
-    }));
+  const movieFunction = async () => {
+    try {
+      const data = await axios.get(URL).then((res) => {
+        setMovies(res.data.results);
+      });
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   };
-  console.log(movies);
+
+  const redirectToMovie = (movieID) => {
+    setTimeout(() => {
+      navigate(`/${movieID}`);
+    }, 200);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const voteAverageColorer = (vote_average) => {
     if (vote_average === 0) {
       return "opacity-0";
@@ -32,65 +53,109 @@ const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
   };
 
   const slideLeft = () => {
-    const slider = document.getElementById('slider' + rowID);
+    const slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft - 500;
-  }
+  };
   const slideRight = () => {
-    const slider = document.getElementById('slider' + rowID);
+    const slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft + 500;
-  }
+  };
+
+  useEffect(() => {
+    movieFunction();
+  }, [URL]);
+
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
+    setFavorites(storedFavorites);
+  }, []);
+
+  const toggleFavorite = (movieId) => {
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = {
+        ...prevFavorites,
+        [movieId]: !prevFavorites[movieId],
+      };
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
+  };
 
 
   return (
     <div className="w-[95%] mx-auto">
-      <p className="text-white text-3xl py-2">{typeOfMovies}</p>
+      <h5 className="text-white text-3xl py-2">{typeOfMovies}</h5>
       <div className="flex items-center relative group">
         <FaArrowCircleLeft
           size={40}
-          className="bg-white rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 md:hidden md:group-hover:block "
+          className="bg-white top-20 md:top-[35%] rounded-full absolute  opacity-50 hover:opacity-100 cursor-pointer z-10 md:hidden md:group-hover:block "
           onClick={slideLeft}
         />
-        <div id={"slider" + rowID} className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth no-scrollbar relative">
-          {movies.map((item, i) => (
-            <div
-              key={i}
-              onClick={() => onSelectMovie(item)}
-              className="w-[150px] h-[200px] inline-block relative cursor-pointer ml-2 md:w-[200px] md:h-[250px]"
-            >
-              <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:bg-black/80 hover:opacity-100 flex justify-center items-center text-center">
-                <p className="text-white text-xs md:text-sm max-w-[150px] whitespace-normal break-words h-full mx-auto flex justify-center items-center">
-                  {item?.title}
-                </p>
-                <p>
-                  <GoHeartFill
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleFavorite(item.id);
-                    }}
-                    className={`absolute top-4 right-4 text-2xl ${
-                      favorites[item.id] ? "text-red-500" : "text-white"
-                    }`}
-                  />
-                </p>
-                <p
-                  className={`absolute top-4 left-4 text-xl ${voteAverageColorer(
-                    item?.vote_average
-                  )}`}
+        <div
+          id={"slider" + rowID}
+          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth no-scrollbar relative"
+        >
+          {loading
+            ? placeholders.map((_, i) => <PlaceholderCard key={i} />)
+            : movies.map((item, i) => (
+                <div
+                  key={i}
+                  onClick={() => {
+                    if (recommended) {
+                      redirectToMovie(item?.id);
+                    } else {
+                      onSelectMovie(item);
+                    }
+                  }}
+                  className="w-[150px] h-[200px] inline-block relative cursor-pointer ml-2 md:w-[200px] md:h-[250px]"
                 >
-                  {item?.vote_average.toFixed(1)}
-                </p>
-              </div>
-              <img
-                className="w-full h-full object-cover"
-                src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
-                alt={item?.title}
-              />
-            </div>
-          ))}
+                  <div className="hidden md:flex absolute top-0 left-0 w-full h-full md:opacity-0 hover:bg-black/80 hover:opacity-100 justify-center items-center text-center">
+                    <p className="text-white md:text-sm max-w-[150px] whitespace-normal break-words h-full mx-auto flex justify-center items-center">
+                      {item?.title}
+                    </p>
+                    <p>
+                      <GoHeartFill
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFavorite(item.id);
+                        }}
+                        className={`absolute top-4 right-4 text-2xl ${
+                          favorites[item.id] ? "text-red-500" : "text-white"
+                        }`}
+                      />
+                    </p>
+                    <p
+                      className={`absolute top-4 left-4 text-xl ${voteAverageColorer(
+                        item?.vote_average
+                      )}`}
+                    >
+                      {item?.vote_average.toFixed(1)}
+                    </p>
+                  </div>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                    alt={item?.title}
+                  />
+                  <div className="md:hidden">
+                    <p className="text-xl text-white truncate break-words">
+                      {item?.title}
+                    </p>
+                    <p
+                      className={`text-xl text-center ${voteAverageColorer(
+                        item?.vote_average
+                      )}`}
+                    >
+                      {item?.vote_average.toFixed(1)}
+                    </p>
+                  </div>
+                </div>
+              ))}
         </div>
+
         <FaArrowCircleRight
           size={40}
-          className="bg-white rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 right-0 md:hidden md:group-hover:block"
+          className="bg-white rounded-full absolute top-20 md:top-[35%]  opacity-50 hover:opacity-100 cursor-pointer z-10 right-0 md:hidden md:group-hover:block"
           onClick={slideRight}
         />
       </div>
@@ -98,4 +163,4 @@ const MovieFeed = ({ URL, typeOfMovies, onSelectMovie, rowID }) => {
   );
 };
 
-export default MovieFeed;
+export default MoviesRow;

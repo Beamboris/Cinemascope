@@ -3,10 +3,10 @@ import responsiveImg from '/src/assets/original.jpeg';
 import parentalControls from '/src/assets/Group 2.png';
 import entertainment from '/src/assets/Group 3.png';
 import responsiveScreens from '/src/assets/Group 4.png'
-import FeatureCard from './FeatureCard';
+import EachCard from './EachCard';
 
 
-const Adjustable = () => {
+const ThreeCardSection = () => {
   return (
     <div className='mt-32 w-10/12 mx-auto'>
         <h2 className='text-4xl text-white text-center'>Watch the way you want</h2>
@@ -16,9 +16,9 @@ const Adjustable = () => {
         </div>
       
       <div className='w-10/12 mt-20 flex flex-col gap-10 mx-auto text-center md:flex-row    '>
-        <FeatureCard img={entertainment} title="Endless entertainment" text="Explore thousands of hours of TV series, movies and originals."/>
-        <FeatureCard img={responsiveScreens} title="Available on your favourite devices" text="Stream on up to four screens at once on compatible devices."/>
-        <FeatureCard img={parentalControls} title="Easy-to-use parental controls" text="Keep your family safe with our intuitive parental controls."/>
+        <EachCard img={entertainment} title="Endless entertainment" text="Explore thousands of hours of TV series, movies and originals."/>
+        <EachCard img={responsiveScreens} title="Available on your favourite devices" text="Stream on up to four screens at once on compatible devices."/>
+        <EachCard img={parentalControls} title="Easy-to-use parental controls" text="Keep your family safe with our intuitive parental controls."/>
 
 
 
@@ -27,4 +27,4 @@ const Adjustable = () => {
   )
 }
 
-export default Adjustable
+export default ThreeCardSection;

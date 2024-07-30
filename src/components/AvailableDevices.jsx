@@ -3,10 +3,10 @@ import tvImage from '/src/assets/tv.png';
 import computerImage from '/src/assets/computer.png'
 import mobileImage from '/src/assets/mobile.png'
 import controllerImage from '/src/assets/controller.png'
-import DeviceUi from './DeviceUi';
+import EachDevice from './EachDevice';
 
 
-const Devices = () => {
+const AvailableDevices = () => {
     const tvDevices = ["Amazon Fire TV", "Android TV devices", "Apple TV", "Chromecast", "LG TVs", "Samsung", "MagentaTV" ,"Stick", "Panasonic"]
     const computerDevices = ["Chrome OS", "MacOS", "Windows PC"]
     const mobileDevices = ["Amazon Fire Tablets", "Android Phones & Tablets", "iPhone & iPad"]
@@ -19,10 +19,10 @@ const Devices = () => {
         <h3 className='text-4xl text-white font-bold text-center mb-20 items-center w-10/12 mx-auto'>Available on your favorite devices</h3>
 
         <div className='grid grid-rows-1 grid-flow-row md:grid-rows-2 md:grid-flow-col lg:grid-rows-1'>
-        <DeviceUi img={tvImage} title="TV" devices={tvDevices} />
-        <DeviceUi img={computerImage} title="Computer" devices={computerDevices} />
-        <DeviceUi img={mobileImage} title="Mobile & Tablet" devices={mobileDevices} />
-        <DeviceUi img={controllerImage} title="Game Consoles" devices={gamingDevices} />
+        <EachDevice img={tvImage} title="TV" devices={tvDevices} />
+        <EachDevice img={computerImage} title="Computer" devices={computerDevices} />
+        <EachDevice img={mobileImage} title="Mobile & Tablet" devices={mobileDevices} />
+        <EachDevice img={controllerImage} title="Game Consoles" devices={gamingDevices} />
     
 
       </div>
@@ -32,4 +32,4 @@ const Devices = () => {
   )
 }
 
-export default Devices
+export default AvailableDevices

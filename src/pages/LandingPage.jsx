@@ -2,8 +2,8 @@ import React from 'react';
 import Hero from '../components/Hero';
 import FilmBanner from '../components/FilmBanner';
 import SubscriptionPlan from '../components/SubscriptionPlan';
-import Adjustable from '../components/Adjustable';
-import Devices from '../components/Devices';
+import ThreeCardSection from '../components/ThreeCardSection';
+import Devices from '../components/AvailableDevices';
 import Accordion from '../components/Accordion';
 
 const LandingPage = () => {
@@ -12,7 +12,7 @@ const LandingPage = () => {
       <Hero />
       <FilmBanner />
       <SubscriptionPlan />
-      <Adjustable />
+      <ThreeCardSection />
       <Accordion />
       <Devices />
     </div>

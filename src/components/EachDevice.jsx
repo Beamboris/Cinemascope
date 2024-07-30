@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeviceUi = ({title, devices, img}) => {
+const EachDevice = ({title, devices, img}) => {
     const devicesLoaded = devices.map((device, index) => <li className='text-gray-400 text-center text-base' key={index}>{device} </li>)
 
   return (
@@ -16,4 +16,4 @@ const DeviceUi = ({title, devices, img}) => {
   )
 }
 
-export default DeviceUi
+export default EachDevice

@@ -33,7 +33,7 @@ const Main = () => {
       <p className='text-gray-400 text-sm'>Enter your email to create or restart your subscription.</p>
       <div className='w-full max-w-[500px] mx-auto flex flex-col h-24 gap-2 md:flex-row md:gap-0 md:max-w-full md:h-14 justify-center'>
       <input placeholder='Email' className="w-full pl-4 h-full rounded md:w-1/3 md:rounded-r-none text-black" type="email"/>
-      <button className='h-full rounded bg-red-600 px-4 md:rounded-l-none'>SIGN UP NOW </button>
+      <button className='h-full rounded bg-red-600 hover:bg-red-800 px-4 md:rounded-l-none'>SIGN UP NOW </button>
       </div>
       <p className=' text-gray-400 text-sm'>Get 12 months for the price of 10 with an annual subscription, compared to paying monthly, on your Premium or Standard plan.</p>
       <p className='text-gray-400 text-xs'>*Effective at the end of the billing period. Subscription required.</p>

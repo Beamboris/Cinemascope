@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FeatureCard = ({img, title, text}) => {
+const EachCard = ({img, title, text}) => {
   return (
        <div>
             <img src={img} alt="feature-icon" className='mx-auto w-[100px]'/>
@@ -10,4 +10,4 @@ const FeatureCard = ({img, title, text}) => {
   )
 }
 
-export default FeatureCard
+export default EachCard;

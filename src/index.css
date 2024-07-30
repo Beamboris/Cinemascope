@@ -1,16 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+    font-family: 'netflix';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/src/public/BebasNeue-Regular.ttf);
+  }
+@font-face {
+    font-family: 'roboto';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/src/public/Roboto-Regular.ttf);
+  }
 
-body{ 
-    background-color: black;
-}
 @layer utilities {
     .no-scrollbar::-webkit-scrollbar {
-        display: none;
+        display: none;  
     }
     .no-scrollbar {
         -ms-overflow-style: none;
         scrollbar-width: none; 
   }
+}
+body{ 
+    background-color: black;
+    font-family: roboto, sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: netflix, sans-serif;
 }
