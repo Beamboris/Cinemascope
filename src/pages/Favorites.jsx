@@ -73,7 +73,7 @@ const Favorites = () => {
           <h6 className='text-4xl text-white text-center mb-20'>These are your favorite movies</h6>
           <div className='w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6'>
             {movies.map((movie, i) => (
-                <div className='mb-36 md:mb-20'>
+                <div className='mb-36 md:mb-20' key={i}>
                   <img className="w-full h-full object-cover rounded-lg cursor-pointer" onClick={() => redirectToMovie(movie?.id)} src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} alt={movie?.title} />
                   <div className='flex justify-between items-center mx-5'>
                   <p className='text-white text-3xl mt-5'>{movie?.title}</p>
@@ -83,9 +83,7 @@ const Favorites = () => {
                     e.stopPropagation();
                     toggleFavorite(movie.id);
                   }}
-                  className={`text-2xl ${
-                    movies.find(m => m.id === movie.id) ? "text-red-500" : "text-white"
-                  } cursor-pointer`}
+                  className={`text-2xl cursor-pointer`}
                 />
                 </div>
                 </div>
