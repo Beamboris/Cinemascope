@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { GoHeartFill } from "react-icons/go";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
@@ -9,7 +9,6 @@ const MoviesRow = ({
   URL,
   typeOfMovies,
   onSelectMovie,
-  rowID,
   recommended = false,
 }) => {
   const [favorites, setFavorites] = useState({});
@@ -17,7 +16,8 @@ const MoviesRow = ({
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const placeholders = new Array(10).fill(0);
-
+  const sliderRef = useRef(null);
+  
   const movieFunction = async () => {
     try {
       const data = await axios.get(URL).then((res) => {
@@ -53,22 +53,23 @@ const MoviesRow = ({
   };
 
   const slideLeft = () => {
-    const slider = document.getElementById("slider" + rowID);
-    slider.scrollLeft = slider.scrollLeft - 500;
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft -= 500;
+    }
   };
+  
   const slideRight = () => {
-    const slider = document.getElementById("slider" + rowID);
-    slider.scrollLeft = slider.scrollLeft + 500;
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft += 500;
+    }
   };
+
 
   useEffect(() => {
     movieFunction();
-  }, [URL]);
-
-  useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || {};
     setFavorites(storedFavorites);
-  }, []);
+  }, [URL]);
 
   const toggleFavorite = (movieId) => {
     setFavorites((prevFavorites) => {
@@ -92,7 +93,7 @@ const MoviesRow = ({
           onClick={slideLeft}
         />
         <div
-          id={"slider" + rowID}
+          ref={sliderRef}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth no-scrollbar relative"
         >
           {loading

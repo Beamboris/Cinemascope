@@ -114,7 +114,7 @@ const EachMovieView = () => {
       </div>
       </div>
       <div className="w-full mt-20 mx-auto">
-      <MoviesRow rowID={1} typeOfMovies={`Recommended`}  URL={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${key}`} recommended={true} />
+      <MoviesRow typeOfMovies={`Recommended`}  URL={`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${key}`} recommended={true} />
       </div>
       </>}
       </> 
