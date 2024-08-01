@@ -5,13 +5,13 @@
     font-family: 'netflix';
     font-style: normal;
     font-weight: normal;
-    src: url(/src/public/BebasNeue-Regular.ttf);
+    src: url(/src/assets/BebasNeue-Regular.ttf);
   }
 @font-face {
     font-family: 'roboto';
     font-style: normal;
     font-weight: normal;
-    src: url(/src/public/Roboto-Regular.ttf);
+    src: url(/src/assets/Roboto-Regular.ttf);
   }
 
 @layer utilities {

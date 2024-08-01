@@ -83,7 +83,7 @@ const Favorites = () => {
                     e.stopPropagation();
                     toggleFavorite(movie.id);
                   }}
-                  className={`text-2xl cursor-pointer`}
+                  className={`text-2xl cursor-pointer text-red-600`}
                 />
                 </div>
                 </div>
