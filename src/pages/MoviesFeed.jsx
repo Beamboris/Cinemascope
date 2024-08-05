@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import requests from '../requests.js';
 import MoviesRow from '../components/MoviesRow.jsx'
 import MovieExplanation from '../components/MovieExplanation.jsx';
@@ -8,13 +8,13 @@ const MoviesFeed = () => {
 
     const [selectedMovie, setSelectedMovie] = useState(null);
 
-    const handleSelectMovie = (movie) => {
+    const handleSelectMovie = useCallback((movie) => {
         setSelectedMovie(movie);
         window.scrollTo({
           top: 0,
           behavior: 'smooth'
         });
-    };
+    }, []);
   
     
     

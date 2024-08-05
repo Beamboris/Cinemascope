@@ -110,7 +110,7 @@ const MoviesRow = ({
                   }}
                   className="w-[150px] h-[200px] inline-block relative cursor-pointer ml-2 md:w-[200px] md:h-[250px]"
                 >
-                  <div className="hidden md:flex absolute top-0 left-0 w-full h-full md:opacity-0 hover:bg-black/80 hover:opacity-100 justify-center items-center text-center transition-opacity duration-300">
+                    <div className="hidden md:flex absolute top-0 left-0 w-full h-full md:opacity-0 hover:bg-black/80 hover:opacity-100 justify-center items-center text-center transition-opacity duration-300">
                     <p className="text-white md:text-sm max-w-[150px] whitespace-normal break-words h-full mx-auto flex justify-center items-center">
                       {item?.title}
                     </p>
@@ -164,4 +164,4 @@ const MoviesRow = ({
   );
 };
 
-export default MoviesRow;
+export default React.memo(MoviesRow);
