@@ -31,12 +31,9 @@ const MoviesRow = ({
   };
 
   const redirectToMovie = (movieID) => {
-    setTimeout(() => {
-      navigate(`/${movieID}`);
-    }, 200);
-    window.scrollTo({
+      navigate(`/${movieID}`)
+     window.scrollTo({
       top: 0,
-      behavior: "smooth",
     });
   };
 
@@ -135,8 +132,9 @@ const MoviesRow = ({
                   </div>
                   <img
                     className="w-full h-full object-cover"
-                    src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                    src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
                     alt={item?.title}
+                    loading="lazy"
                   />
                   <div className="md:hidden">
                     <p className="text-xl text-white truncate break-words">

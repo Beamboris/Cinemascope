@@ -1,8 +1,8 @@
 import React from 'react';
 import tvImage from '/src/assets/tv.png';
-import computerImage from '/src/assets/computer.png'
-import mobileImage from '/src/assets/mobile.png'
-import controllerImage from '/src/assets/controller.png'
+import computerImage from '/src/assets/computer.png';
+import mobileImage from '/src/assets/mobile.png';
+import controllerImage from '/src/assets/controller.png';
 import EachDevice from './EachDevice';
 
 

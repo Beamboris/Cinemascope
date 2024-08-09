@@ -1,8 +1,8 @@
 import React from 'react';
-import responsiveImg from '/src/assets/original.jpeg';
+import responsiveImg from '/src/assets/original-removebg.png';
 import parentalControls from '/src/assets/Group 2.png';
 import entertainment from '/src/assets/Group 3.png';
-import responsiveScreens from '/src/assets/Group 4.png'
+import responsiveScreens from '/src/assets/Group 4.png';
 import EachCard from './EachCard';
 
 

@@ -32,10 +32,20 @@ const EachMovieView = () => {
       }
     };
 
-  useEffect(() => {
-    fetchMovieDetails();
-   
-  }, [id]);
+  
+    useEffect(() => {
+      setLoading(true);
+    
+      const timer = setTimeout(() => {
+        fetchMovieDetails().then(() => {
+          setLoading(false);
+        });
+      }, 300);
+    
+      return () => clearTimeout(timer);
+    }, [id]);
+
+
 
   const firstFive = (arr) => {
     return arr.slice(0, 5);
